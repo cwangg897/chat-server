@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/chatdb
+    username: root
+    password: 1234
+  jpa:
+    # InnoDB
+    database-platform: org.hibernate.dialect.MySQLDialect # innoDB???? DB???? ???? ??? innoDB
+    generate-ddl: true # ddl??? ??
+    hibernate:
+      ddl-auto: update # ???? update??? ????? db?????? ??? ???
+    show-sql: true
+    database: mysql
+    open-in-view: false
+
+jwt:
+# chatserversecretaccesstokenchatserversecretaccesstokenchatserversecretaccesstoken
+  secretKey: Y2hhdHNlcnZlcnNlY3JldGFjY2Vzc3Rva2VuY2hhdHNlcnZlcnNlY3JldGFjY2Vzc3Rva2VuY2hhdHNlcnZlcnNlY3JldGFjY2Vzc3Rva2Vu  # spring 3.x 부터 인코딩해서부터 값을 넣어야함 길이도 주의
+  expiration: 3000 # 3000분
