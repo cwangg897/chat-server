@@ -39,7 +39,8 @@ public class SecurityConfigs {
              */
             .httpBasic(AbstractHttpConfigurer::disable) // HTTP Basic 비활성화 (보안인증방법중하나인데 설정안하면 spring기본적으로 Http Basic활성화 시킴
             // 특정 URL패턴에 대해서는 Authentication객체 요구하지 않음.  Authentication 객체는 Spring Security에서 사용되는 인증 정보를 나타내는 객체
-            .authorizeHttpRequests(a -> a.requestMatchers("/members/create", "/members/do-login").permitAll().anyRequest().authenticated())
+            // connect에 대해서는 Authentication만들어야하는 의무 없다
+            .authorizeHttpRequests(a -> a.requestMatchers("/members/create", "/members/do-login", "/connect").permitAll().anyRequest().authenticated())
             .sessionManagement(s-> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // 세션방식을 사용하지 않겠다라는 의미 토큰방식을 쓰기때문에
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class) // 검증코드는 JwtAuthFilter이고 해당클래스를 통해검증하겠다라고 적기 싱글톤으로 만들어서 Bean으로 주입받기
             .build();
